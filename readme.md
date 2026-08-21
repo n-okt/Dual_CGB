@@ -27,7 +27,7 @@ pip install -r requirements.txt
 ```
 
 ## :pushpin: Training and Evaluation
-The primary 4340 Steel dataset used in our paper cannot be released publicly. Here, we explain how to run training, validation, and testing with the 316L Grains dataset.
+The 4340 Steel dataset primarily used in our paper cannot be released publicly. Here, we explain how to run training, validation, and testing with the 316L Grains dataset.
 
 ### :memo: Data preparation
 #### 1. Download the 316L Grains dataset ([kaggle](https://www.kaggle.com/datasets/peterwarren/voronoi-artificial-grains-gen)). 
