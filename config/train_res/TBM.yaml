@@ -1,0 +1,53 @@
+generator:
+  name: "NAFNet"
+  args:
+    segmentation: false
+    img_channel: 1
+
+discriminator:
+  name: "Discriminator"
+  args:
+    in_channels: 1
+    use_sigmoid: true
+    use_spectral_norm: true
+    init_weights: true
+
+dataset:
+  name: TBM
+  csv_dir_path: "dataset/TBM/cv_res"
+  input_col: "input_path"
+  target_col: "label_path"
+
+training:
+  epochs: 50
+  batch_size: 16
+  accumulation_steps: 1 # batch_size * accumulation_steps = effective batch size
+  num_classes: 2
+  num_folds: 5 # Cross validation
+  save_start_epoch: 51 # Save only the latest checkpoint
+  finetune: false
+
+loss:
+  gan_loss_weight: 1
+  dis_loss_weight: 1
+  BCE_loss_weight: 1
+  BCE_pos_weight: 2
+  gan_loss_type: "nsgan"
+
+gen_optimizer:
+  lr: 0.001
+  weight_decay: 0
+  betas: [0.9, 0.999]
+
+dis_optimizer:
+  lr: 0.0001
+  weight_decay: 0
+  betas: [0.9, 0.999]
+
+gen_scheduler:
+  flg: true
+  eta_min: 0.000001
+
+dis_scheduler:
+  flg: false
+  eta_min: 0.000001

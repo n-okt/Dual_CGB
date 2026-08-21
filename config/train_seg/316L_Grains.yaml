@@ -1,0 +1,29 @@
+model:
+  name: "NAFNet_EGD"
+  args:
+    segmentation: true
+
+dataset:
+  name: 316L_Grains
+  csv_dir_path: "dataset/316L_Grains/cv_seg"
+  input_col: "photo_path"
+  target_col: "mask_path"
+  train_data_aug: true
+
+training:
+  epochs: 30
+  batch_size: 8
+  accumulation_steps: 2 # batch_size * accumulation_steps = effective batch size
+  num_classes: 2
+  num_folds: 5 # Cross validation
+  save_start_epoch: 15
+
+optimizer:
+  lr: 0.001
+  weight_decay: 0
+  betas: [0.9, 0.999]
+
+scheduler:
+  flg: true
+  name: "cosine_annealing"
+  eta_min: 0.000001

@@ -1,0 +1,35 @@
+model:
+  name: "NAFNet_EGD"  # segmentation model
+  args:
+    segmentation: true
+
+res_model:
+  name: "NAFNet"   # restoration model
+  args:
+    segmentation: false
+    img_channel: 1
+
+dataset:
+  name: TBM
+  csv_dir_path: "dataset/TBM/cv_seg"
+  input_col: "input_path"
+  target_col: "label_path"
+  test_data_aug: true
+
+training:
+  num_classes: 2
+  num_folds: 5 
+
+test:
+  weight_path: "results_seg/TBM/NAFNet_EGD/fold_{fold}/model_epoch_{epoch}.pth" # segmentation model weight path
+  stride: 50
+  tau: 0.8
+  test_batch_size: 16
+  save_img_flg: true
+  test_crop_size: null
+  noise_tolerances: [0.25, 0.3, 0.35, 0.4, 0.45, 0.5]
+  max_res_iters: 5
+  val_start_epoch: 30
+
+res_test:
+  weight_path: "results_res/TBM/NAFNet_finetune/fold_{fold}/model_latest.pth" # restoration model weight path

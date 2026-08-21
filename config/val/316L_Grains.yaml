@@ -1,0 +1,35 @@
+model:
+  name: "NAFNet_EGD"  # segmentation model
+  args:
+    segmentation: true
+
+res_model:
+  name: "NAFNet"   # restoration model
+  args:
+    segmentation: false
+    img_channel: 1
+
+dataset:
+  name: 316L_Grains
+  csv_dir_path: "dataset/316L_Grains/cv_seg"
+  input_col: "photo_path"
+  target_col: "mask_path"
+  test_data_aug: true
+
+training:
+  num_classes: 2
+  num_folds: 5 
+
+test:
+  weight_path: "results_seg/316L_Grains/NAFNet_EGD/fold_{fold}/model_epoch_{epoch}.pth" # segmentation model weight path
+  stride: 200
+  tau: 0.8
+  test_batch_size: 16
+  save_img_flg: true
+  test_crop_size: 400
+  noise_tolerances: [0.25, 0.3, 0.35, 0.4, 0.45, 0.5]
+  max_res_iters: 5
+  val_start_epoch: 15
+
+res_test:
+  weight_path: "results_res/316L_Grains/NAFNet_finetune/fold_{fold}/model_latest.pth" # restoration model weight path

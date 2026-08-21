@@ -1,0 +1,29 @@
+model:
+  name: "NAFNet_EGD"
+  args:
+    segmentation: true
+
+dataset:
+  name: TBM
+  csv_dir_path: "dataset/TBM/cv_seg"
+  input_col: "input_path"
+  target_col: "label_path"
+  train_data_aug: true
+
+training:
+  epochs: 50
+  batch_size: 16
+  accumulation_steps: 1 # batch_size * accumulation_steps = effective batch size
+  num_classes: 2
+  num_folds: 5 # Cross validation
+  save_start_epoch: 30
+
+optimizer:
+  lr: 0.001
+  weight_decay: 0
+  betas: [0.9, 0.999]
+
+scheduler:
+  flg: true
+  name: "cosine_annealing"
+  eta_min: 0.000001

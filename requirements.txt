@@ -1,0 +1,4 @@
+opencv-python-headless
+scikit-image
+pandas
+topolosses --no-deps
