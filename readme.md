@@ -99,7 +99,7 @@ python val.py --config config/val/316L_Grains.yaml
 ```
 
 ### :memo: Evaluation
-Run the following to perform inference. The best parameters saved during validation are automatically used.
+Run the following to perform inference. The optimal parameters (noise suppression values and restoration iterations) saved during validation are automatically used.
 ```bash
 python test.py --config config/test/316L_Grains.yaml
 ```
