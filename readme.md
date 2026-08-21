@@ -1,4 +1,4 @@
-## Dual-stage Continuous Grain Boundary (Dual-CGB) detection framework
+## Dual-CGB: Dual-stage Continuous Grain Boundary detection framework
 
 This is the official PyTorch implementation of the paper [Deep Learning-Based Grain Boundary Detection in Polycrystalline Metals via Self-Supervised Boundary Restoration (Materials Today Communications, 2026)]()
 
